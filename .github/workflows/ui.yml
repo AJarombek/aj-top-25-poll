@@ -1,0 +1,57 @@
+name: Vue Format, Lint, and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 0 1 * *"
+
+jobs:
+  vue_format_lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    container: node:20.11.0
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Initialize NPM
+        working-directory: ./ui/aj-poll
+        run: npm ci
+
+      - name: Lint TypeScript Code
+        working-directory: ./ui/aj-poll
+        run: npm run lint
+
+      - name: Format TypeScript Code
+        working-directory: ./ui/aj-poll
+        run: npm run format-check
+
+      - name: Type Check TypeScript Code
+        working-directory: ./ui/aj-poll
+        run: npm run type-check
+
+  vue_unit_tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    container: node:20.11.0
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Initialize NPM
+        working-directory: ./ui/aj-poll
+        run: npm ci
+
+      - name: Vue Unit Tests
+        working-directory: ./ui/aj-poll
+        run: npm run test:unit:cicd
