@@ -9,6 +9,12 @@ and AI platforms. Drawing inspiration from the renowned [AP Top 25](https://apne
 polls for college football and basketball, the AJ Poll offers valuable insights into the popularity of programming 
 languages, engineering components, and software companies.
 
+### Commands
+
+```bash
+source ./utils/s3-upload.sh ./ui/aj-poll/dist
+```
+
 ### Directories
 
 | Directory | Description                                   |
