@@ -37,6 +37,16 @@
   --section-gap: 160px;
 }
 
+/* Media query breakpoints */
+:root {
+  --xs: 320px;
+  --sm: 480px;
+  --md: 560px;
+  --lg: 768px;
+  --xl: 992px;
+  --xxl: 1200px;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-background: var(--vt-c-black);

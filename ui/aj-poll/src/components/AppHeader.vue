@@ -4,7 +4,7 @@ import { ref } from 'vue';
 const isPollDropdownOpen = ref(false);
 const isAboutDropdownOpen = ref(false);
 
-const githubUrl = 'https://github.com/AJarombek';
+const githubUrl = 'https://github.com/AJarombek/aj-top-25-poll';
 const websiteUrl = 'https://jarombek.com/';
 </script>
 
@@ -13,7 +13,7 @@ const websiteUrl = 'https://jarombek.com/';
     <div class="wrapper">
       <img class="logo" src="../assets/aj-logo.png" alt="AJ Poll Logo" />
       <h1>AJ Top 25 Poll</h1>
-      <nav>
+      <nav class="desktop-nav">
         <div
           @click="
             isPollDropdownOpen = !isPollDropdownOpen;
@@ -55,6 +55,11 @@ const websiteUrl = 'https://jarombek.com/';
           </div>
         </div>
       </nav>
+      <nav class="mobile-nav">
+        <div class="dropdown">
+          <p>Menu</p>
+        </div>
+      </nav>
     </div>
   </header>
 </template>
@@ -76,17 +81,25 @@ header {
 }
 
 h1 {
+  font-size: 1.5rem;
   margin: 0 1rem;
 }
 
 nav {
   margin-left: auto;
-  display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1rem;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+nav.desktop-nav {
+  display: none;
+}
+
+nav.mobile-nav {
+  display: flex;
 }
 
 .dropdown {
@@ -119,5 +132,21 @@ nav {
 
 .dropdown-content a:hover {
   text-decoration: underline;
+}
+
+@media only screen and (min-width: 560px) {
+  nav.desktop-nav {
+    display: flex;
+  }
+
+  nav.mobile-nav {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
 }
 </style>
