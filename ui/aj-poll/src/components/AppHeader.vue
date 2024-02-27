@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import MobileDropdown from "@/components/MobileDropdown.vue";
+import type { Ref } from 'vue';
+import MobileDropdown from '@/components/MobileDropdown.vue';
 
-const isPollDropdownOpen = ref(false);
-const isAboutDropdownOpen = ref(false);
-const isMobileDropdownOpen = ref(false);
+const isPollDropdownOpen: Ref<boolean> = ref(false);
+const isAboutDropdownOpen: Ref<boolean> = ref(false);
+const isMobileDropdownOpen: Ref<boolean> = ref(false);
+
+const closeDropdown = () => (isMobileDropdownOpen.value = false);
 
 const githubUrl = 'https://github.com/AJarombek/aj-top-25-poll';
 const websiteUrl = 'https://jarombek.com/';
@@ -22,7 +25,7 @@ const websiteUrl = 'https://jarombek.com/';
             isAboutDropdownOpen = false;
           "
         >
-          <div class="aj-dropdown">
+          <div class="aj-dropdown cursor-pointer">
             <p>Polls</p>
             <font-awesome-icon icon="chevron-down" v-if="!isPollDropdownOpen" />
             <font-awesome-icon icon="chevron-up" v-if="isPollDropdownOpen" />
@@ -39,7 +42,7 @@ const websiteUrl = 'https://jarombek.com/';
             isPollDropdownOpen = false;
           "
         >
-          <div class="aj-dropdown">
+          <div class="aj-dropdown cursor-pointer">
             <p>About</p>
             <font-awesome-icon icon="chevron-down" v-if="!isAboutDropdownOpen" />
             <font-awesome-icon icon="chevron-up" v-if="isAboutDropdownOpen" />
@@ -57,11 +60,16 @@ const websiteUrl = 'https://jarombek.com/';
           </div>
         </div>
       </nav>
-      <nav class="mobile-nav">
-        <div @click="isMobileDropdownOpen = !isMobileDropdownOpen;">
+      <nav class="mobile-nav cursor-pointer">
+        <div>
           <div class="dropdown">
-            <p>Menu</p>
-            <mobile-dropdown v-if="isMobileDropdownOpen" />
+            <p @click="isMobileDropdownOpen = !isMobileDropdownOpen">Menu</p>
+            <mobile-dropdown
+              @closeDropdown="closeDropdown"
+              :githubUrl="githubUrl"
+              :websiteUrl="websiteUrl"
+              v-if="isMobileDropdownOpen"
+            />
           </div>
         </div>
       </nav>
@@ -110,7 +118,6 @@ nav.mobile-nav {
 .aj-dropdown {
   display: flex;
   align-items: center;
-  cursor: pointer;
   margin: 0 1rem;
 }
 

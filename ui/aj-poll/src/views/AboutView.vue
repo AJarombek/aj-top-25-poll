@@ -4,7 +4,7 @@ const apPollUrl = 'https://apnews.com/hub/ap-top-25-college-basketball-poll';
 
 <template>
   <div class="about">
-    <h1>About</h1>
+    <h1 class="font-serif text-2xl">About</h1>
     <p>
       The AJ Top 25 Poll is a quarterly survey that aggregates feedback from software engineers,
       public ranking systems, and AI platforms. Drawing inspiration from the renowned
