@@ -39,12 +39,12 @@
 
 /* Media query breakpoints */
 :root {
-  --xs: 320px;
-  --sm: 480px;
-  --md: 560px;
-  --lg: 768px;
-  --xl: 992px;
-  --xxl: 1200px;
+  --xxs: 320px;
+  --xs: 480px;
+  --sm: 560px;
+  --md: 768px;
+  --lg: 992px;
+  --xl: 1200px;
 }
 
 @media (prefers-color-scheme: dark) {

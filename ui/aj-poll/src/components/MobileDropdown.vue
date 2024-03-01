@@ -18,7 +18,7 @@ const navigateToHome = () => {
 </script>
 
 <template>
-  <div class="mobile-dropdown fixed inset-6 z-50">
+  <div class="mobile-dropdown fixed inset-4 xs:inset-6 z-50">
     <header>
       <div class="wrapper">
         <img class="logo" src="../assets/aj-logo.png" alt="AJ Poll Logo" />
