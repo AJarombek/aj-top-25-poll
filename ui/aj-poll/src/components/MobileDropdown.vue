@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+
 const props = defineProps<{
   githubUrl: string;
   websiteUrl: string;
@@ -6,6 +8,13 @@ const props = defineProps<{
 
 const emit = defineEmits(['closeDropdown']);
 const closeDropdown = () => emit('closeDropdown');
+
+const router = useRouter();
+
+const navigateToHome = () => {
+  router.push('/');
+  closeDropdown();
+};
 </script>
 
 <template>
@@ -13,7 +22,7 @@ const closeDropdown = () => emit('closeDropdown');
     <header>
       <div class="wrapper">
         <img class="logo" src="../assets/aj-logo.png" alt="AJ Poll Logo" />
-        <h1>AJ Top 25 Poll</h1>
+        <h1 class="cursor-pointer" @click.prevent="navigateToHome">AJ Top 25 Poll</h1>
         <nav class="cursor-pointer">
           <p @click.prevent="closeDropdown">Close</p>
         </nav>
@@ -23,16 +32,18 @@ const closeDropdown = () => emit('closeDropdown');
           <input type="radio" name="mobile-nav-accordion" />
           <div class="collapse-title text-xl font-medium">Polls</div>
           <div class="collapse-content flex flex-col">
-            <RouterLink to="/polls/languages">Languages</RouterLink>
-            <RouterLink to="/polls/components">Components</RouterLink>
-            <RouterLink to="/polls/companies">Companies</RouterLink>
+            <RouterLink to="/polls/languages" @click.prevent="closeDropdown">Languages</RouterLink>
+            <RouterLink to="/polls/components" @click.prevent="closeDropdown"
+              >Components</RouterLink
+            >
+            <RouterLink to="/polls/companies" @click.prevent="closeDropdown">Companies</RouterLink>
           </div>
         </div>
         <div class="collapse">
           <input type="radio" name="mobile-nav-accordion" />
           <div class="collapse-title text-xl font-medium">About</div>
           <div class="collapse-content flex flex-col">
-            <RouterLink to="/about">About</RouterLink>
+            <RouterLink to="/about" @click.prevent="closeDropdown">About</RouterLink>
             <a :href="props.githubUrl" target="_blank">
               GitHub
               <font-awesome-icon icon="arrow-up-right-from-square" />

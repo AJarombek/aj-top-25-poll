@@ -1,13 +1,17 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import type { Ref } from 'vue';
 import MobileDropdown from '@/components/MobileDropdown.vue';
+
+const router = useRouter();
 
 const isPollDropdownOpen: Ref<boolean> = ref(false);
 const isAboutDropdownOpen: Ref<boolean> = ref(false);
 const isMobileDropdownOpen: Ref<boolean> = ref(false);
 
 const closeDropdown = () => (isMobileDropdownOpen.value = false);
+const navigateToHome = () => router.push('/');
 
 const githubUrl = 'https://github.com/AJarombek/aj-top-25-poll';
 const websiteUrl = 'https://jarombek.com/';
@@ -17,7 +21,7 @@ const websiteUrl = 'https://jarombek.com/';
   <header>
     <div class="wrapper">
       <img class="logo" src="../assets/aj-logo.png" alt="AJ Poll Logo" />
-      <h1>AJ Top 25 Poll</h1>
+      <h1 class="cursor-pointer" @click.prevent="navigateToHome">AJ Top 25 Poll</h1>
       <nav class="desktop-nav">
         <div
           @click="
